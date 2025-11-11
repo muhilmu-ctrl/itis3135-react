@@ -1,6 +1,10 @@
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default function Introduction(){
     return (
         <>
+        <Header/>
         <h2 class="mobile-heading">Introduction</h2>
         <h2 class="mobile-heading">Muhilan Muruganandam|Magnificent Meercat</h2>
         <figure>
@@ -25,8 +29,8 @@ export default function Introduction(){
             </li>
             <li><b>Graduating in 2027</b></li>
             <li><b>From Texas</b></li>
-            
         </ul>
+        <Footer/>
         </>
     )
 }
