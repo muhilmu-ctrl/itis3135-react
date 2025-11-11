@@ -1,7 +1,13 @@
+import Navbar from "./Navbar";
+
+
 export default function Header(){
     return (
         <>
-        <header>header</header>
+        <header>
+            <h2>Muhilan Muruganandam's Magnificent Meercat | ITIS3135</h2>
+            <Navbar/>
+        </header>
         </>
     )
 }
