@@ -12,7 +12,8 @@ function App() {
     <>
       <Header/>
       <main>
-        <h2>h222</h2>
+        <h2 class="mobile-heading">Home</h2>
+        <p>This is all the content for my ITIS 3135 class</p>
       </main>
       <Footer/>
     </>
