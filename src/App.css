@@ -42,20 +42,32 @@
 }
 
 body{
-            background-color: rgb(173, 247, 190);
-        }
-        a{
-            color:rgb(22, 4, 139)
-        }
-        a:hover{
-    color:rgb(191, 26, 26);
-        }
-        h1{
-            font-family:Tahoma;
-        }
-        h2{
-            font-family:Tahoma;
-        }
-        p{
-            font-family:Georgia;
-        } 
+  background-color: rgb(173, 247, 190);
+    /* text-align: center; */
+    color:black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+a{
+  color:rgb(22, 4, 139)
+}
+a:hover{
+  color:rgb(191, 26, 26);
+}
+h1{
+  font-family:Tahoma;
+}
+h2{
+  font-family:Tahoma;
+}
+p{
+  font-family:Georgia;
+}
+ul{
+  text-align: left;
+}
+main{
+  text-align: left;
+  max-width: 1200px;
+  width: 90%;
+  margin:0 auto;
+}

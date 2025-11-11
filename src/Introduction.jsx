@@ -8,7 +8,7 @@ export default function Introduction(){
         <h2 class="mobile-heading">Introduction</h2>
         <h2 class="mobile-heading">Muhilan Muruganandam|Magnificent Meercat</h2>
         <figure>
-            <img src="images/muhilan_photo.jpeg" alt="Muhilan_Muruganandam"/>
+            <img src="/public/muhilan_photo.jpeg" alt="Muhilan_Muruganandam"/>
             <figcaption><i>Muhilan Muruganandam</i></figcaption>
         </figure>
         <ul>
