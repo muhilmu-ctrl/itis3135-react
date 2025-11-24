@@ -20,6 +20,13 @@ export default function Introductions(){
         <h2>intros</h2>
         <p>{JSON.stringify(introData)}</p>
         {error == null ? "" : <p>Error Code: {error}</p>}
+        {
+            introData.map((data,index) => {
+                <article key={index}>
+                    <h3>{data}</h3>
+                </article>
+            })
+        }
         </>
     )
 
