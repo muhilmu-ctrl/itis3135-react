@@ -43,13 +43,12 @@ export default function Introductions(){
                         <li><strong>Primary Computer Platform: </strong></li>
                         <li><strong>Courses I am Taking & Why:</strong></li>
                         <li>
-                        <ul>
-                            <li><strong></strong></li>
-                            <li><strong></strong></li>
-                            <li><strong></strong></li>
-                            <li><strong></strong></li>
-                            <li><strong></strong></li>
-                        </ul>
+                            <ul>
+                                {
+                                    data.courses.map((course,index) =>
+                                    <li key={index}><strong>{course.dept} {course.num} - {course.name}</strong>: {course.reason}</li>)
+                                }
+                            </ul>
                         </li>
                     </ul>
                 </article>
