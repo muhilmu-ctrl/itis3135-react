@@ -17,7 +17,7 @@ export default function Introductions(){
     }, []);
     return(
         <>
-        <h2>intros</h2>
+        <h2>Introductions</h2>
         {/* <p>{JSON.stringify(introData)}</p> */}
         {error == null ? "" : <p>Error Code: {error}</p>}
         {
