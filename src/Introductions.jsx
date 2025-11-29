@@ -50,7 +50,13 @@ export default function Introductions(){
                                 }
                             </ul>
                         </li>
+                        <li><strong>Fun Fact: </strong>{data.funFact}</li>
                     </ul>
+                    <p><em>{data.quote.text}</em>
+                    <br/>
+                    - {data.quote.author}
+                    </p>
+                    <a href="{data.links.charlotte}">CLT Web</a> || <a href="{data.links.github}">GitHub</a> || <a href="{data.links.githubio}">GitHub.io</a> || <a href="{data.links.linkedin}">LinkedIn</a>
                 </article>
             )
         }
