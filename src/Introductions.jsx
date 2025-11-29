@@ -56,7 +56,9 @@ export default function Introductions(){
                     <br/>
                     - {data.quote.author}
                     </p>
-                    <a href="{data.links.charlotte}">CLT Web</a> || <a href="{data.links.github}">GitHub</a> || <a href="{data.links.githubio}">GitHub.io</a> || <a href="{data.links.linkedin}">LinkedIn</a>
+                    <a href="{data.links.charlotte}">CLT Web</a> {data.divider} <a href="{data.links.github}">GitHub</a> {data.divider} <a href="{data.links.githubio}">GitHub.io</a> {data.divider} <a href="{data.links.linkedin}">LinkedIn</a>
+                    <br/>
+                    <br/>
                 </article>
             )
         }
