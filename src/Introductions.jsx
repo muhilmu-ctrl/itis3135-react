@@ -3,6 +3,9 @@ import { useState,useEffect } from "react"
 export default function Introductions(){
     const [introData,setIntroData] = useState([]);
     const [error,setError] = useState(null);
+    const [nameSearch, setNameSearch] = useState("");
+    const [displayName, setDisplayName] = useState(true);
+    const [displayMascot, setDisplayMascot] = useState(true);
     useEffect (() =>{
         fetch("https://dvonb.xyz/api/2025-fall/itis-3135/students?full=1")
         .then((response) =>{
@@ -19,17 +22,41 @@ export default function Introductions(){
         <>
         <h2>Introductions</h2>
         {/* <p>{JSON.stringify(introData)}</p> */}
+
+        <label>
+            Search for Student:&nbsp;&nbsp;
+            <input type="text" onChange={(event) => setNameSearch(event.target.value)}></input>
+            &nbsp;&nbsp; Name Search: &nbsp;&nbsp; {nameSearch}
+        </label>
+        <section>
+            <h3>Selected Filters</h3>
+            <label htmlFor="">
+                Name: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayName} onClick={() => setDisplayName(!displayName)}></input>
+                &nbsp;&nbsp; Display Name: {displayName.toString()};
+            </label>
+            <label htmlFor="">
+                &nbsp;&nbsp;&nbsp;&nbsp;Mascot: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayMascot} onClick={() => setDisplayMascot(!displayMascot)}></input>
+                &nbsp;&nbsp; Display Mascot: {displayMascot.toString()};
+            </label>
+        </section>
+
         {error == null ? "" : <p>Error Code: {error}</p>}
         {
             introData.map((data,index) => 
                 <article key={index}>
                     <h3>
-                        {data.name.first} {" "}
-                        {data.name.middleInitial ? data.name.middleInitial + " " : ""} {" "}
-                        {data.name.preferred ? data.name.preferred + " " : ""} {" "}
-                        {data.name.last} {" "}
-                        {data.divider} {" "}
-                        {data.mascot}
+                        {
+                            displayName && 
+                            `${data.name.first} ${" "}
+                            ${data.name.middleInitial ? data.name.middleInitial + " " : ""} ${" "}
+                            ${data.name.preferred ? data.name.preferred + " " : ""} ${" "}
+                            ${data.name.last} ${" "}`
+                            
+                        }
+                        {displayName && displayMascot && data.divider} {" "}
+                        {displayMascot && data.mascot}
                     </h3>
                     <figure>
                         <img src={"https://dvonb.xyz" + data.media.src} alt="#"/>
