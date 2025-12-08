@@ -6,6 +6,9 @@ export default function Introductions(){
     const [nameSearch, setNameSearch] = useState("");
     const [displayName, setDisplayName] = useState(true);
     const [displayMascot, setDisplayMascot] = useState(true);
+    const [displayImage, setDisplayImage] = useState(true);
+    const [displayPersonalStatement, setDisplayPersonalStatement] = useState(true);
+    const [displayBackgrounds, setDisplayBackgrounds] = useState(true);
     useEffect (() =>{
         fetch("https://dvonb.xyz/api/2025-fall/itis-3135/students?full=1")
         .then((response) =>{
@@ -26,19 +29,32 @@ export default function Introductions(){
         <label>
             Search for Student:&nbsp;&nbsp;
             <input type="text" onChange={(event) => setNameSearch(event.target.value)}></input>
-            &nbsp;&nbsp; Name Search: &nbsp;&nbsp; {nameSearch}
+            {/* &nbsp;&nbsp; Name Search: &nbsp;&nbsp; {nameSearch} */}
         </label>
         <section>
             <h3>Selected Filters</h3>
             <label htmlFor="">
                 Name: &nbsp;&nbsp;
                 <input type="checkbox" checked={displayName} onClick={() => setDisplayName(!displayName)}></input>
-                &nbsp;&nbsp; Display Name: {displayName.toString()};
+                {/* &nbsp;&nbsp; Display Name: {displayName.toString()}; */}
             </label>
             <label htmlFor="">
                 &nbsp;&nbsp;&nbsp;&nbsp;Mascot: &nbsp;&nbsp;
                 <input type="checkbox" checked={displayMascot} onClick={() => setDisplayMascot(!displayMascot)}></input>
-                &nbsp;&nbsp; Display Mascot: {displayMascot.toString()};
+                {/* &nbsp;&nbsp; Display Mascot: {displayMascot.toString()}; */}
+            </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Image: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayImage} onClick={() => setDisplayImage(!displayImage)}></input>
+                {/* &nbsp;&nbsp; Display Image: {displayImage.toString()}; */}
+            </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Personal Statement: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayPersonalStatement} onClick={() => setDisplayPersonalStatement(!displayPersonalStatement)}></input>
+            </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Backgrounds: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayBackgrounds} onClick={() => setDisplayBackgrounds(!displayBackgrounds)}></input>
             </label>
         </section>
 
@@ -58,16 +74,24 @@ export default function Introductions(){
                         {displayName && displayMascot && data.divider} {" "}
                         {displayMascot && data.mascot}
                     </h3>
+                    {displayImage &&(
                     <figure>
                         <img src={"https://dvonb.xyz" + data.media.src} alt="#"/>
                     </figure>
-                    <hr/>
-                    <ul>
+                    )}
+
+                    {displayPersonalStatement &&(
+                        <p>{data.personalStatement}</p>
+                    )}
+                    {displayBackgrounds && (<ul>
                         <li><strong>Personal Background: </strong>{data.backgrounds.personal}</li>
                         <li><strong>Professional Background:</strong>{data.backgrounds.professional}</li>
                         <li><strong>Academic Background: </strong>{data.backgrounds.academic}</li>
                         <li><strong>Background in this subject: </strong>{data.backgrounds.subject}</li>
                         <li><strong>Primary Computer Platform: </strong></li>
+                    </ul>)}
+
+                    <ul>
                         <li><strong>Courses I am Taking & Why:</strong></li>
                         <li>
                             <ul>
