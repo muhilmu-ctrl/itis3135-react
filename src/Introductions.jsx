@@ -145,10 +145,13 @@ export default function Introductions(){
                 &nbsp;&nbsp;&nbsp;&nbsp;Links:
                 <input type="checkbox" checked={displayLinks} onClick={() => setDisplayLinks(!displayLinks)}></input>
             </label>
-            <br></br>
+            <br/>
+            <br/>
             <button onClick={() => setShowSlideshow(!showSlideshow)}>
                 {showSlideshow ? "View All" : "View Slideshow"}
             </button>
+            <br/>
+            <br/>
         </section>
 
         {error == null ? "" : <p>Error Code: {error}</p>}
@@ -156,12 +159,14 @@ export default function Introductions(){
             showSlideshow
             ?
             (<>
+            <button onClick={() => setIndexOfSlideshow(0)}>First</button>&nbsp;
             <button onClick={() => indexOfSlideshow - 1 < 0 ? setIndexOfSlideshow(filteredIntroductionData.length - 1) : setIndexOfSlideshow(indexOfSlideshow - 1)}>
                         Previous
-                    </button>
+                    </button>&nbsp;
                     <button onClick={() => indexOfSlideshow + 1 >= filteredIntroductionData.length ? setIndexOfSlideshow(0) : setIndexOfSlideshow(indexOfSlideshow + 1)}>
                         Next
-                    </button>
+                    </button>&nbsp;
+                    <button onClick={() => setIndexOfSlideshow(filteredIntroductionData.length -1)}>Last</button>&nbsp;
                     <input
                         id={"slider"}
                         type="range"
