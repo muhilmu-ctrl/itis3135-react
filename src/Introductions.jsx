@@ -13,6 +13,9 @@ export default function Introductions(){
     const [displayExtra, setDisplayExtra] = useState(true);
     const [displayQuote, setDisplayQuote] = useState(true);
     const [displayLinks, setDisplayLinks] = useState(true);
+    const [showSlideshow, setShowSlideshow] = useState(false);
+    const [indexOfSlideshow, setIndexOfSlideshow] = useState(0);
+
     useEffect (() =>{
         fetch("https://dvonb.xyz/api/2025-fall/itis-3135/students?full=1")
         .then((response) =>{
@@ -25,6 +28,76 @@ export default function Introductions(){
         .then((data) => setIntroData(data))
         .catch((error) => setError(error.message));
     }, []);
+
+    const filteredIntroductionData = introData.filter((data) => {
+        if (nameSearch === "") return true;
+        const fullStudentName = `${data.name.first} ${data.name.middleInitial}. "${data.name.preferred}" ${data.name.last}`;
+        return fullStudentName.toLowerCase().includes(nameSearch.toLowerCase());
+    });
+
+    function renderedData(data,key){
+        return (
+        <article key={key}>
+            <h3>
+            {
+            displayName && 
+            `${data.name.first} ${" "}
+            ${data.name.middleInitial ? data.name.middleInitial + " " : ""} ${" "}
+            ${data.name.preferred ? data.name.preferred + " " : ""} ${" "}
+            ${data.name.last} ${" "}`
+            }
+            {displayName && displayMascot && data.divider} {" "}
+            {displayMascot && data.mascot}
+            </h3>
+            {displayImage &&(
+            <figure>
+                <img src={"https://dvonb.xyz" + data.media.src} alt="#"/>
+            </figure>
+            )}
+
+            {displayPersonalStatement &&(
+                <p>{data.personalStatement}</p>
+            )}
+            {displayBackgrounds && (<ul>
+                <li><strong>Personal Background: </strong>{data.backgrounds.personal}</li>
+                <li><strong>Professional Background:</strong>{data.backgrounds.professional}</li>
+                <li><strong>Academic Background: </strong>{data.backgrounds.academic}</li>
+                <li><strong>Background in this subject: </strong>{data.backgrounds.subject}</li>
+                <li><strong>Primary Computer Platform: </strong></li>
+            </ul>)}
+
+            {displayCourses &&(<ul>
+                <li><strong>Courses I am Taking & Why:</strong></li>
+                <li>
+                    <ul>
+                        {
+                            data.courses.map((course,index) =>
+                            <li key={index}><strong>{course.dept} {course.num} - {course.name}</strong>: {course.reason}</li>)
+                        }
+                    </ul>
+                </li>
+            </ul>)}
+
+            {displayExtra &&(<li><strong>Fun Fact: </strong>{data.funFact}</li>)}
+
+            {displayQuote &&(<p><em>{data.quote.text}</em>
+            <br/>
+            - {data.quote.author}
+            </p>)}
+            {displayLinks &&(
+            <>
+            <a href="{data.links.charlotte}">CLT Web</a> {data.divider} 
+            <a href="{data.links.github}">GitHub</a> {data.divider} 
+            <a href="{data.links.githubio}">GitHub.io</a> {data.divider} 
+            <a href="{data.links.linkedin}">LinkedIn</a>
+            </>
+            )}
+            <br/>
+            <br/>
+        </article>
+        )
+    }
+
     return(
         <>
         <h2>Introductions</h2>
@@ -33,24 +106,20 @@ export default function Introductions(){
         <label>
             Search for Student:&nbsp;&nbsp;
             <input type="text" onChange={(event) => setNameSearch(event.target.value)}></input>
-            {/* &nbsp;&nbsp; Name Search: &nbsp;&nbsp; {nameSearch} */}
         </label>
         <section>
             <h3>Selected Filters</h3>
             <label htmlFor="">
                 Name:
                 <input type="checkbox" checked={displayName} onClick={() => setDisplayName(!displayName)}></input>
-                {/* &nbsp;&nbsp; Display Name: {displayName.toString()}; */}
             </label>
             <label htmlFor="">
                 &nbsp;&nbsp;&nbsp;&nbsp;Mascot:
                 <input type="checkbox" checked={displayMascot} onClick={() => setDisplayMascot(!displayMascot)}></input>
-                {/* &nbsp;&nbsp; Display Mascot: {displayMascot.toString()}; */}
             </label>
             <label>
                 &nbsp;&nbsp;&nbsp;&nbsp;Image:
                 <input type="checkbox" checked={displayImage} onClick={() => setDisplayImage(!displayImage)}></input>
-                {/* &nbsp;&nbsp; Display Image: {displayImage.toString()}; */}
             </label>
             <label>
                 &nbsp;&nbsp;&nbsp;&nbsp;Personal Statement:
@@ -76,11 +145,39 @@ export default function Introductions(){
                 &nbsp;&nbsp;&nbsp;&nbsp;Links:
                 <input type="checkbox" checked={displayLinks} onClick={() => setDisplayLinks(!displayLinks)}></input>
             </label>
+            <br></br>
+            <button onClick={() => setShowSlideshow(!showSlideshow)}>
+                {showSlideshow ? "View All" : "View Slideshow"}
+            </button>
         </section>
 
         {error == null ? "" : <p>Error Code: {error}</p>}
         {
-            introData.map((data,index) => 
+            showSlideshow
+            ?
+            (<>
+            <button onClick={() => indexOfSlideshow - 1 < 0 ? setIndexOfSlideshow(introductionData.length - 1) : setIndexOfSlideshow(indexOfSlideshow - 1)}>
+                        Previous
+                    </button>
+                    <button onClick={() => indexOfSlideshow + 1 >= introductionData.length ? setIndexOfSlideshow(0) : setIndexOfSlideshow(indexOfSlideshow + 1)}>
+                        Next
+                    </button>
+                    <input
+                        id={"slider"}
+                        type="range"
+                        max={introductionData.length - 1}
+                        min={0}
+                        step={1}
+                        onChange={(event) =>
+                            setIndexOfSlideshow(event.target.value)
+                        }
+                        value={indexOfSlideshow}
+                    />
+                    {renderedData(filteredIntroductionData[indexOfSlideshow],indexOfSlideshow)}
+            </>)
+            :  (filteredIntroductionData.map((data,i) => renderedData(data,i)))
+              
+            /*introData.map((data,index) => 
                 <article key={index}>
                     <h3>
                         {
@@ -140,7 +237,8 @@ export default function Introductions(){
                     <br/>
                     <br/>
                 </article>
-            )
+                
+            )*/
         }
         </>
     );
