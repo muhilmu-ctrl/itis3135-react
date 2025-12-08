@@ -86,10 +86,10 @@ export default function Introductions(){
             </p>)}
             {displayLinks &&(
             <>
-            <a href="{data.links.charlotte}">CLT Web</a> {data.divider} 
-            <a href="{data.links.github}">GitHub</a> {data.divider} 
-            <a href="{data.links.githubio}">GitHub.io</a> {data.divider} 
-            <a href="{data.links.linkedin}">LinkedIn</a>
+            <a href={data.links.charlotte}>CLT Web</a> {data.divider} 
+            <a href={data.links.github}>GitHub</a> {data.divider} 
+            <a href={data.links.githubio}>GitHub.io</a> {data.divider} 
+            <a href={data.links.linkedin}>LinkedIn</a>
             </>
             )}
             <br/>
