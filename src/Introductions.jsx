@@ -38,42 +38,42 @@ export default function Introductions(){
         <section>
             <h3>Selected Filters</h3>
             <label htmlFor="">
-                Name: &nbsp;&nbsp;
+                Name:
                 <input type="checkbox" checked={displayName} onClick={() => setDisplayName(!displayName)}></input>
                 {/* &nbsp;&nbsp; Display Name: {displayName.toString()}; */}
             </label>
             <label htmlFor="">
-                &nbsp;&nbsp;&nbsp;&nbsp;Mascot: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Mascot:
                 <input type="checkbox" checked={displayMascot} onClick={() => setDisplayMascot(!displayMascot)}></input>
                 {/* &nbsp;&nbsp; Display Mascot: {displayMascot.toString()}; */}
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Image: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Image:
                 <input type="checkbox" checked={displayImage} onClick={() => setDisplayImage(!displayImage)}></input>
                 {/* &nbsp;&nbsp; Display Image: {displayImage.toString()}; */}
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Personal Statement: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Personal Statement:
                 <input type="checkbox" checked={displayPersonalStatement} onClick={() => setDisplayPersonalStatement(!displayPersonalStatement)}></input>
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Backgrounds: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Backgrounds:
                 <input type="checkbox" checked={displayBackgrounds} onClick={() => setDisplayBackgrounds(!displayBackgrounds)}></input>
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Courses: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Courses:
                 <input type="checkbox" checked={displayCourses} onClick={() => setDisplayCourses(!displayCourses)}></input>
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Extra: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Extra:
                 <input type="checkbox" checked={displayExtra} onClick={() => setDisplayExtra(!displayExtra)}></input>
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Quote: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Quote:
                 <input type="checkbox" checked={displayQuote} onClick={() => setDisplayQuote(!displayQuote)}></input>
             </label>
             <label>
-                &nbsp;&nbsp;&nbsp;&nbsp;Links: &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;Links:
                 <input type="checkbox" checked={displayLinks} onClick={() => setDisplayLinks(!displayLinks)}></input>
             </label>
         </section>
