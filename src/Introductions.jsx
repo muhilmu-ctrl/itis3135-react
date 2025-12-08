@@ -63,7 +63,7 @@ export default function Introductions(){
                 <li><strong>Professional Background:</strong>{data.backgrounds.professional}</li>
                 <li><strong>Academic Background: </strong>{data.backgrounds.academic}</li>
                 <li><strong>Background in this subject: </strong>{data.backgrounds.subject}</li>
-                <li><strong>Primary Computer Platform: </strong></li>
+                
             </ul>)}
 
             {displayCourses &&(<ul>
@@ -77,8 +77,8 @@ export default function Introductions(){
                     </ul>
                 </li>
             </ul>)}
-
-            {displayExtra &&(<li><strong>Fun Fact: </strong>{data.funFact}</li>)}
+            
+            {displayExtra && (<li><strong>Fun Fact: </strong>{data.funFact}</li>)}
 
             {displayQuote &&(<p><em>{data.quote.text}</em>
             <br/>
