@@ -9,6 +9,10 @@ export default function Introductions(){
     const [displayImage, setDisplayImage] = useState(true);
     const [displayPersonalStatement, setDisplayPersonalStatement] = useState(true);
     const [displayBackgrounds, setDisplayBackgrounds] = useState(true);
+    const [displayCourses, setDisplayCourses] = useState(true);
+    const [displayExtra, setDisplayExtra] = useState(true);
+    const [displayQuote, setDisplayQuote] = useState(true);
+    const [displayLinks, setDisplayLinks] = useState(true);
     useEffect (() =>{
         fetch("https://dvonb.xyz/api/2025-fall/itis-3135/students?full=1")
         .then((response) =>{
@@ -56,6 +60,22 @@ export default function Introductions(){
                 &nbsp;&nbsp;&nbsp;&nbsp;Backgrounds: &nbsp;&nbsp;
                 <input type="checkbox" checked={displayBackgrounds} onClick={() => setDisplayBackgrounds(!displayBackgrounds)}></input>
             </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Courses: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayCourses} onClick={() => setDisplayCourses(!displayCourses)}></input>
+            </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Extra: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayExtra} onClick={() => setDisplayExtra(!displayExtra)}></input>
+            </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Quote: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayQuote} onClick={() => setDisplayQuote(!displayQuote)}></input>
+            </label>
+            <label>
+                &nbsp;&nbsp;&nbsp;&nbsp;Links: &nbsp;&nbsp;
+                <input type="checkbox" checked={displayLinks} onClick={() => setDisplayLinks(!displayLinks)}></input>
+            </label>
         </section>
 
         {error == null ? "" : <p>Error Code: {error}</p>}
@@ -91,7 +111,7 @@ export default function Introductions(){
                         <li><strong>Primary Computer Platform: </strong></li>
                     </ul>)}
 
-                    <ul>
+                    {displayCourses &&(<ul>
                         <li><strong>Courses I am Taking & Why:</strong></li>
                         <li>
                             <ul>
@@ -101,13 +121,22 @@ export default function Introductions(){
                                 }
                             </ul>
                         </li>
-                        <li><strong>Fun Fact: </strong>{data.funFact}</li>
-                    </ul>
-                    <p><em>{data.quote.text}</em>
+                    </ul>)}
+
+                    {displayExtra &&(<li><strong>Fun Fact: </strong>{data.funFact}</li>)}
+
+                    {displayQuote &&(<p><em>{data.quote.text}</em>
                     <br/>
                     - {data.quote.author}
-                    </p>
-                    <a href="{data.links.charlotte}">CLT Web</a> {data.divider} <a href="{data.links.github}">GitHub</a> {data.divider} <a href="{data.links.githubio}">GitHub.io</a> {data.divider} <a href="{data.links.linkedin}">LinkedIn</a>
+                    </p>)}
+                    {displayLinks &&(
+                    <>
+                    <a href="{data.links.charlotte}">CLT Web</a> {data.divider} 
+                    <a href="{data.links.github}">GitHub</a> {data.divider} 
+                    <a href="{data.links.githubio}">GitHub.io</a> {data.divider} 
+                    <a href="{data.links.linkedin}">LinkedIn</a>
+                    </>
+                    )}
                     <br/>
                     <br/>
                 </article>
